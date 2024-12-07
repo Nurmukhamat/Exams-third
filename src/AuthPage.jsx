@@ -57,7 +57,7 @@ const AuthPage = ({ data }) => {
               checked={!isPrivate}
               onChange={handlePublicChange}
             />
-            Публик
+            PUBLIC
           </label>
           <label>
             <input
@@ -65,7 +65,7 @@ const AuthPage = ({ data }) => {
               checked={isPrivate}
               onChange={handlePrivateChange}
             />
-            Приват
+            PRIVATE
           </label>
         </div>
         <button type="submit">Войти</button>

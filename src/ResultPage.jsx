@@ -4,30 +4,19 @@ import styled from 'styled-components';
 const ResultPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { password, isPrivate, data, email } = location.state;
+  const { isPrivate, data } = location.state;
   const filteredData = data.filter(item => 
-    (isPrivate && item.status === 'Приват') || 
-    (!isPrivate && item.status === 'Публик')
+    (isPrivate && item.status === 'PRIVATE') || 
+    (!isPrivate && item.status === 'PUBLIC')
   );
-  const formatEmail = (email) => {
-    const [localPart, domain] = email.split('@');
-    if (localPart.length <= 5) {
-      return email; 
-    }
-    const firstThree = localPart.slice(0, 1);
-    const lastTwo = localPart.slice(-2);
-    const maskedPart = '*'.repeat(localPart.length - 5); 
-    return `${firstThree}${maskedPart}${lastTwo}@${domain}`;
-  };
+  
   return (
     <StyledForm>
       <button onClick={() => navigate('/')}>Назад</button>
-      <p>email: {isPrivate ? formatEmail(email) : email}</p> 
-      <p>password: {isPrivate ? '*'.repeat(password.length) : password}</p>
       <ul>
         {filteredData.map((item, index) => (
           <li key={index}>
-            ID: {item.id}, Статус: {item.status}
+             {item.userName}{item.userAge},{item.status}
           </li>
         ))}
       </ul>
